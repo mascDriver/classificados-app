@@ -47,7 +47,7 @@ function DetalhesEmpresa() {
                     <CardContent>
                         <Grid container spacing={2} sx={{padding: 5}}>
                             <Grid item xs={12}>
-                                <Typography variant="button" style={{textTransform: 'capitalize'}}>
+                                <Typography variant="button">
                                     {empresa.descricao}
                                 </Typography>
                             </Grid>
