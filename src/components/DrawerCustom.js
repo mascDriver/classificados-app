@@ -73,6 +73,17 @@ export default function DrawerCustom() {
                     </ListItem>
                 ))}
             </List>
+            <Divider/>
+            <List>
+                <ListItem disablePadding>
+                    <ListItemButton to="blog" color="inherit" component={RouterLink}>
+                        <ListItemIcon>
+                            {customIcon({iconName: 'Newspaper'})}
+                        </ListItemIcon>
+                        <ListItemText primary={'Blog'}/>
+                    </ListItemButton>
+                </ListItem>
+            </List>
         </Box>
     );
 

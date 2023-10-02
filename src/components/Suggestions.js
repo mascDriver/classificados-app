@@ -6,7 +6,6 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
@@ -60,8 +59,10 @@ export default function Suggestions(category) {
                                             overflow: 'hidden',
                                             WebkitBoxOrient: 'vertical',
                                             WebkitLineClamp: 3,
-                                        }}>
-                                            {card.descricao}
+                                        }}
+                                                    dangerouslySetInnerHTML={{
+                                                        __html: card.descricao
+                                                    }}>
                                         </Typography>
                                     </CardContent>
                                     <CardActions style={{justifyContent: 'center'}}>

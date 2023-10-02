@@ -44,7 +44,7 @@ export default function ListaEmpresas() {
                     console.error('Erro ao buscar categorias:', error);
                 });
         }
-    }, [category, numPage]);
+    }, [category, numPage, categoria]);
     return (
         <div>
             <Box
@@ -104,8 +104,10 @@ export default function ListaEmpresas() {
                                             overflow: 'hidden',
                                             WebkitBoxOrient: 'vertical',
                                             WebkitLineClamp: 3,
-                                        }}>
-                                            {card.descricao}
+                                        }}
+                                                    dangerouslySetInnerHTML={{
+                                                        __html: card.descricao
+                                                    }}>
                                         </Typography>
                                     </CardContent>
                                     <CardActions style={{justifyContent: 'center'}}>

@@ -7,6 +7,7 @@ import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 import Grid from "@mui/material/Grid";
 import Suggestions from "./Suggestions";
+import Divider from "@mui/material/Divider";
 
 function DetalhesEmpresa() {
     const {nome} = useParams();
@@ -35,7 +36,8 @@ function DetalhesEmpresa() {
         <div>
             <Container sx={{py: 12, bgcolor: '#f6fff0'}} maxWidth="lg">
                 <Card variant="elevation" sx={{bgcolor: '#ebffe5'}}>
-                    <CardHeader title={empresa.nome} titleTypographyProps={{variant: 'h4', textAlign: 'center'}}>
+                    <CardHeader title={empresa.nome}
+                                titleTypographyProps={{variant: 'h4', textAlign: 'center', borderBottom: 1, borderColor: 'rgba(0, 0, 0, 0.12)'}}>
                     </CardHeader>
 
                     <img
@@ -45,11 +47,15 @@ function DetalhesEmpresa() {
                         style={{paddingLeft: 50}}
                     />
                     <CardContent>
+                        <Divider/>
                         <Grid container spacing={2} sx={{padding: 5}}>
                             <Grid item xs={12}>
-                                <Typography variant="button">
-                                    {empresa.descricao}
+                                <Typography variant="subtitle1" color="text.secondary" component="div"
+                                            dangerouslySetInnerHTML={{
+                                                __html: empresa.descricao
+                                            }}>
                                 </Typography>
+                                <Divider/>
                             </Grid>
                         </Grid>
                         <Grid container spacing={2}>
@@ -61,11 +67,13 @@ function DetalhesEmpresa() {
                             <Grid item xs={6}>
                                 <Typography variant="h6" color="text.secondary" style={{textTransform: 'capitalize'}}>
                                     {empresa.endereco}
+                                    <Divider/>
                                 </Typography>
                             </Grid>
                             <Grid item xs={6}>
                                 <Typography variant="h6" color="text.secondary" style={{textTransform: 'capitalize'}}>
                                     {empresa.bairro}
+                                    <Divider/>
                                 </Typography>
                             </Grid>
                             <Grid item xs={12}>
@@ -76,6 +84,7 @@ function DetalhesEmpresa() {
                             <Grid item xs={12}>
                                 <Typography variant="h6" color="text.secondary">
                                     {empresa.email}
+                                    <Divider/>
                                 </Typography>
                             </Grid>
                             <Grid item xs={12}>
@@ -86,6 +95,7 @@ function DetalhesEmpresa() {
                             <Grid item xs={12}>
                                 <Typography variant="h6" color="text.secondary">
                                     {empresa.telefone}
+                                    <Divider/>
                                 </Typography>
                             </Grid>
                         </Grid>

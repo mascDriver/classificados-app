@@ -9,6 +9,8 @@ import {theme} from "./theme";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 import axios from "axios";
+import Blog from "./components/Blog";
+import Post from "./components/Post";
 
 const defaultTheme = createTheme(
     {
@@ -36,6 +38,8 @@ function App() {
                     <Route path="/" element={<ListaEmpresas/>}/>
                     <Route path="/categoria/:category" element={<ListaEmpresas/>}/>
                     <Route path="/empresa/:nome" element={<DetalhesEmpresa/>}/>
+                    <Route path="/blog/" element={<Blog/>}/>
+                    <Route path="/post/:slug" element={<Post/>}/>
                 </Routes>
             </Router>
             <Footer/>
