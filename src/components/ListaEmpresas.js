@@ -2,6 +2,8 @@ import * as React from 'react';
 import {useEffect, useState} from 'react';
 import Button from '@mui/material/Button';
 
+import Backdrop from '@mui/material/Backdrop';
+import CircularProgress from '@mui/material/CircularProgress';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
@@ -17,6 +19,7 @@ import Prospect from "./Prospect";
 import Pagination from '@mui/material/Pagination';
 
 export default function ListaEmpresas() {
+    const [loading, setLoading] = useState(true);
     const [empresas, setEmpresas] = useState([]);
     const [categoria, setCategorias] = useState([]);
     const [numPage, setNumPage] = useState(1);
@@ -44,6 +47,7 @@ export default function ListaEmpresas() {
                     console.error('Erro ao buscar categorias:', error);
                 });
         }
+        setLoading(false);
     }, [category, numPage, categoria]);
     return (
         <div>
@@ -85,46 +89,50 @@ export default function ListaEmpresas() {
 
             <Container sx={{flexGrow: 1, py: 4, bgcolor: '#f6fff0'}}>
                 <Grid container spacing={4}>
-                    {empresas.map((card) => (
-                        <Grid item key={card.id} xs={12} sm={4} md={3}>
-                            <Card sx={{height: '100%', display: 'flex', flexDirection: 'column', bgcolor: '#ebffe5'}}>
+                    {loading ? 
+                        <CircularProgress color="inherit"/>
+                        :
+                        empresas.map((card) => (
+                            <Grid item key={card.id} xs={12} sm={4} md={3}>
+                                <Card sx={{height: '100%', display: 'flex', flexDirection: 'column', bgcolor: '#ebffe5'}}>
 
-                                <CardActionArea component={Link} to={`/empresa/${card.slug}`}>
-                                    <CardMedia
-                                        component="img"
-                                        sx={{padding: "1em 1em 0 1em", objectFit: "contain"}}
-                                        image={card.imagens[0] ? card.imagens[0].logo : 'https://via.placeholder.com/150'}
-                                    />
-                                    <CardContent sx={{flexGrow: 1}}>
-                                        <Typography gutterBottom variant="h5" component="h2">
-                                            {card.nome}
-                                        </Typography>
-                                        <Typography sx={{
-                                            display: '-webkit-box',
-                                            overflow: 'hidden',
-                                            WebkitBoxOrient: 'vertical',
-                                            WebkitLineClamp: 3,
-                                        }}
-                                                    dangerouslySetInnerHTML={{
-                                                        __html: card.descricao
-                                                    }}>
-                                        </Typography>
-                                    </CardContent>
-                                    <CardActions style={{justifyContent: 'center'}}>
-                                        <Button
-                                            component={Link}
-                                            to={`/empresa/${card.slug}`}
-                                            variant="contained"
-                                            color="primary"
-                                        >
-                                            Ver Detalhes
-                                        </Button>
-                                    </CardActions>
+                                    <CardActionArea component={Link} to={`/empresa/${card.slug}`}>
+                                        <CardMedia
+                                            component="img"
+                                            sx={{padding: "1em 1em 0 1em", objectFit: "contain"}}
+                                            image={card.imagens[0] ? card.imagens[0].logo : 'https://via.placeholder.com/150'}
+                                        />
+                                        <CardContent sx={{flexGrow: 1}}>
+                                            <Typography gutterBottom variant="h5" component="h2">
+                                                {card.nome}
+                                            </Typography>
+                                            <Typography sx={{
+                                                display: '-webkit-box',
+                                                overflow: 'hidden',
+                                                WebkitBoxOrient: 'vertical',
+                                                WebkitLineClamp: 3,
+                                            }}
+                                                        dangerouslySetInnerHTML={{
+                                                            __html: card.descricao
+                                                        }}>
+                                            </Typography>
+                                        </CardContent>
+                                        <CardActions style={{justifyContent: 'center'}}>
+                                            <Button
+                                                component={Link}
+                                                to={`/empresa/${card.slug}`}
+                                                variant="contained"
+                                                color="primary"
+                                            >
+                                                Ver Detalhes
+                                            </Button>
+                                        </CardActions>
 
-                                </CardActionArea>
-                            </Card>
-                        </Grid>
-                    ))}
+                                    </CardActionArea>
+                                </Card>
+                            </Grid>
+                        ))
+                    }
                 </Grid>
 
             </Container>
